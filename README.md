@@ -1,4 +1,5 @@
 # InfluxDB & Grafana using Kubernetes on Google Cloud Platform
+## Setup InfluxDB
 Create a persistent disk to be used as the storage for InfluxDB:
 ```
 gcloud compute disks create influxdb --size=200GB --zone=europe-west1-c
@@ -19,3 +20,4 @@ Create the InfluxDB service:
 ```
 kubectl create -f services/influxdb.yaml
 ```
+## Setup Grafana
