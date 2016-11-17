@@ -11,3 +11,11 @@ Create a persistent volume claim for InfluxDB:
 ```
 kubectl create -f pvc/influxdb.yaml
 ```
+Create the InfluxDB deployment:
+```
+kubectl create -f deployments/influxdb.yaml
+```
+Create the InfluxDB service:
+```
+kubectl create -f services/influxdb.yaml
+```
