@@ -1,5 +1,5 @@
 # InfluxDB & Grafana using Kubernetes on Google Cloud Platform
-A simple demonstration of running InfluxDB and Grafana on Google Cloud Platform. Persistent disks are used for both InfluxDB and Grafana. Note that a higher performance disk may be required for InfluxDB for some applications.
+A simple demonstration of running InfluxDB and Grafana on Google Cloud Platform. Persistent disks are used for both InfluxDB and Grafana. Note that a higher performance disk (e.g. SSD) may be required for InfluxDB for some applications.
 ## Setup InfluxDB
 Create a persistent disk to be used as the storage for the InfluxDB data & metadata:
 ```
