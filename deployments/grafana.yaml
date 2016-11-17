@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:3.1.1
+          env:
+          - name: GF_USERS_ALLOW_SIGN_UP
+            value: "false"
+          - name: GF_USERS_ALLOW_ORG_CREATE
+            value: "false"
+          - name: GF_AUTH_ANONYMOUS_ENABLED
+            value: "true"
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana
+          livenessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 40
+            timeoutSeconds: 4
+      volumes:
+        - name: "grafana"
+          persistentVolumeClaim:
+            claimName: grafana
