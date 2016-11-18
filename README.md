@@ -23,6 +23,16 @@ Create the InfluxDB service:
 ```
 kubectl create -f services/influxdb.yaml
 ```
+You can use `kubectl exec` to access a shell in the InfluxDB container and run the InfluxDB CLI, e.g.
+```
+$ kubectl exec influxdb-967644454-rwmqi -i -t -- bash -il
+root@influxdb-967644454-rwmqi:/# influx
+Visit https://enterprise.influxdata.com to register for updates, InfluxDB server management, and monitoring.
+Connected to http://localhost:8086 version 1.1.0
+InfluxDB shell version: 1.1.0
+>
+```
+This makes it easy to add an admin user, for example.
 ## Setup Grafana
 Create a persistent disk to be used for storing Grafana state:
 ```
