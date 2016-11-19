@@ -35,7 +35,8 @@ Connected to http://localhost:8086 version 1.1.0
 InfluxDB shell version: 1.1.0
 >
 ```
-This makes it easy to add an admin user, for example.
+This makes it easy to add an admin user, create other users, add databases etc.
+
 ## Setup Grafana
 Create a persistent disk to be used for storing Grafana state:
 ```
