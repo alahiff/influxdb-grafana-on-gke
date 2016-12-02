@@ -1,7 +1,5 @@
 # InfluxDB & Grafana using Kubernetes on Google Cloud Platform
 
-~work in progress~
-
 A simple demonstration of running InfluxDB and Grafana using Kubernetes on Google Cloud Platform. Persistent disks are used for both InfluxDB and Grafana. Also demonstrates running Telegraf on every node in the cluster for monitoring.
 
 Within the Kubernetes cluster InfluxDB will be accessible at `http://influxdb:8086`.
