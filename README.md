@@ -33,6 +33,12 @@ Create the InfluxDB service:
 ```
 kubectl create -f services/influxdb.yaml
 ```
+Wait for the pod to be running:
+```
+$ kubectl get pods
+NAME                       READY     STATUS    RESTARTS   AGE
+influxdb-967644454-gwfly   1/1       Running   0          1m
+```
 You can use `kubectl exec` to access a shell in the InfluxDB container and run the InfluxDB CLI, e.g.
 ```
 $ kubectl exec influxdb-967644454-rwmqi -i -t -- bash -il
