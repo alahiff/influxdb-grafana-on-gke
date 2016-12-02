@@ -87,3 +87,23 @@ $ kubectl proxy
 Starting to serve on 127.0.0.1:8001
 ```
 then the Grafana UI should be visible in your web browser at <http://localhost:8001/api/v1/proxy/namespaces/default/services/grafana/>
+
+## Setup Telegraf
+We can use a daemonset to run instances of Telegraf on every node in the cluster. Firstly, create a configmap container the configuration:
+```
+$ kubectl create configmap telegraf --from-file=config/telegraf.conf
+```
+then create the daemonset:
+```
+kubectl create -f daemonsets/telegraf.yaml
+```
+After a few moments there should be a Telegraf pod running on every node in the cluster (in this case 3):
+```
+$ kubectl get pods
+NAME                       READY     STATUS    RESTARTS   AGE
+grafana-2990892256-va1h5   1/1       Running   0          34m
+influxdb-967644454-gwfly   1/1       Running   0          43m
+telegraf-cfili             1/1       Running   0          30s
+telegraf-rwsjo             1/1       Running   0          30s
+telegraf-x34n8             1/1       Running   0          30s
+```
