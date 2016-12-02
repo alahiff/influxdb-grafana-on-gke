@@ -81,3 +81,9 @@ Create the Grafana service:
 ```
 kubectl create -f services/grafana.yaml
 ```
+A quick way to check that Grafna is working is to first create a proxy
+```
+$ kubectl proxy
+Starting to serve on 127.0.0.1:8001
+```
+then the Grafana UI should be visible in your web browser at <http://localhost:8001/api/v1/proxy/namespaces/default/services/grafana/>
