@@ -11,6 +11,12 @@ Create a persistent disk to be used as the storage for the InfluxDB data & metad
 ```
 gcloud compute disks create influxdb --size=200GB --zone=europe-west1-c
 ```
+and check:
+```
+$ gcloud compute disks list influxdb
+NAME      ZONE            SIZE_GB  TYPE         STATUS
+influxdb  europe-west1-c  200      pd-standard  READY
+```
 Create a persistent volume:
 ```
 kubectl create -f pv/influxdb.yaml
@@ -42,6 +48,12 @@ This makes it easy to add an admin user, create other users, add databases etc.
 Create a persistent disk to be used for storing Grafana state:
 ```
 gcloud compute disks create grafana --size=50GB --zone=europe-west1-c
+```
+and check:
+```
+$ gcloud compute disks list grafana
+NAME     ZONE            SIZE_GB  TYPE         STATUS
+grafana  europe-west1-c  50       pd-standard  READY
 ```
 Create a persistent volume & claim:
 ```
