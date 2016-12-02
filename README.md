@@ -107,3 +107,22 @@ telegraf-cfili             1/1       Running   0          30s
 telegraf-rwsjo             1/1       Running   0          30s
 telegraf-x34n8             1/1       Running   0          30s
 ```
+Check that Telegraf is working:
+```
+$ kubectl logs telegraf-cfili
+2016/12/02 22:50:33 I! Using config file: /etc/telegraf/telegraf.conf
+2016/12/02 22:50:33 I! Starting Telegraf (version 1.1.1)
+2016/12/02 22:50:33 I! Loaded outputs: influxdb
+2016/12/02 22:50:33 I! Loaded inputs: inputs.disk inputs.diskio inputs.mem inputs.processes inputs.swap inputs.system inputs.net inputs.cpu
+2016/12/02 22:50:33 I! Tags enabled: host=telegraf-cfili
+2016/12/02 22:50:33 I! Agent Config: Interval:1m0s, Quiet:false, Hostname:"telegraf-cfili", Flush Interval:10s
+HEPMBP095:influxdb-grafana-on-gke-master andrew$ kubectl logs telegraf-cfili
+2016/12/02 22:50:33 I! Using config file: /etc/telegraf/telegraf.conf
+2016/12/02 22:50:33 I! Starting Telegraf (version 1.1.1)
+2016/12/02 22:50:33 I! Loaded outputs: influxdb
+2016/12/02 22:50:33 I! Loaded inputs: inputs.disk inputs.diskio inputs.mem inputs.processes inputs.swap inputs.system inputs.net inputs.cpu
+2016/12/02 22:50:33 I! Tags enabled: host=telegraf-cfili
+2016/12/02 22:50:33 I! Agent Config: Interval:1m0s, Quiet:false, Hostname:"telegraf-cfili", Flush Interval:10s
+2016/12/02 22:51:10 I! Output [influxdb] buffer fullness: 28 / 10000 metrics. Total gathered metrics: 28. Total dropped metrics: 0.
+2016/12/02 22:51:10 I! Output [influxdb] wrote batch of 28 metrics in 8.803928ms
+```
