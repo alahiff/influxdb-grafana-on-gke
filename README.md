@@ -70,6 +70,13 @@ Create the Grafana deployment:
 ```
 kubectl create -f deployments/grafana.yaml
 ```
+and wait for the pod to enter the running state:
+```
+$ kubectl get pods
+NAME                       READY     STATUS    RESTARTS   AGE
+grafana-2990892256-va1h5   1/1       Running   0          12s
+influxdb-967644454-gwfly   1/1       Running   0          9m
+```
 Create the Grafana service:
 ```
 kubectl create -f services/grafana.yaml
