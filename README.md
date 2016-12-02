@@ -145,7 +145,7 @@ HEPMBP095:influxdb-grafana-on-gke-master andrew$ kubectl logs telegraf-cfili
 2016/12/02 22:51:10 I! Output [influxdb] buffer fullness: 28 / 10000 metrics. Total gathered metrics: 28. Total dropped metrics: 0.
 2016/12/02 22:51:10 I! Output [influxdb] wrote batch of 28 metrics in 8.803928ms
 ```
-Try increasing the size of the cluster:
+Try increasing the size of the cluster, this example from 3 to 4:
 ```
 $ gcloud container clusters resize cluster-1 --size 4
 ```
