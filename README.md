@@ -145,3 +145,27 @@ HEPMBP095:influxdb-grafana-on-gke-master andrew$ kubectl logs telegraf-cfili
 2016/12/02 22:51:10 I! Output [influxdb] buffer fullness: 28 / 10000 metrics. Total gathered metrics: 28. Total dropped metrics: 0.
 2016/12/02 22:51:10 I! Output [influxdb] wrote batch of 28 metrics in 8.803928ms
 ```
+Try increasing the size of the cluster:
+```
+$ gcloud container clusters resize cluster-1 --size 4
+```
+We see that the size of the cluster has increased after a little while:
+```
+$ kubectl get nodes
+NAME                                       STATUS    AGE
+gke-cluster-1-default-pool-e5cf0a51-2ksi   Ready     1h
+gke-cluster-1-default-pool-e5cf0a51-dkul   Ready     1h
+gke-cluster-1-default-pool-e5cf0a51-f1sq   Ready     1h
+gke-cluster-1-default-pool-e5cf0a51-sbg6   Ready     34s
+```
+and we now have 4 instances of Telegraf running:
+```
+$ kubectl get pods
+NAME                       READY     STATUS    RESTARTS   AGE
+grafana-2990892256-va1h5   1/1       Running   0          43m
+influxdb-967644454-gwfly   1/1       Running   0          53m
+telegraf-cfili             1/1       Running   0          10m
+telegraf-cwjd6             1/1       Running   0          1m
+telegraf-rwsjo             1/1       Running   0          10m
+telegraf-x34n8             1/1       Running   0          10m
+```
