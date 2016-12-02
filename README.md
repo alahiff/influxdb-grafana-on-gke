@@ -81,7 +81,7 @@ Create the Grafana service:
 ```
 kubectl create -f services/grafana.yaml
 ```
-A quick way to check that Grafna is working is to first create a proxy
+A quick way to check that Grafana is working is to first create a proxy
 ```
 $ kubectl proxy
 Starting to serve on 127.0.0.1:8001
@@ -89,7 +89,26 @@ Starting to serve on 127.0.0.1:8001
 then the Grafana UI should be visible in your web browser at <http://localhost:8001/api/v1/proxy/namespaces/default/services/grafana/>
 
 ## Setup Telegraf
-We can use a daemonset to run instances of Telegraf on every node in the cluster. Firstly, create a configmap container the configuration:
+Create a database, a user which can write into the database, and another use which can read from the database:
+```
+$ kubectl exec influxdb-967644454-gwfly -i -t -- bash -il
+root@influxdb-967644454-gwfly:/# export TERM=vt100
+root@influxdb-967644454-gwfly:/# influx
+Visit https://enterprise.influxdata.com to register for updates, InfluxDB server management, and monitoring.
+Connected to http://localhost:8086 version 1.1.0
+InfluxDB shell version: 1.1.0
+> auth
+username: root
+password:
+> create database cluster
+> CREATE USER telegraf WITH PASSWORD 'metrics'
+> GRANT WRITE ON cluster TO telegraf
+> CREATE USER reader WITH PASSWORD 'metrics'
+> GRANT READ ON cluster TO reader
+> exit
+root@influxdb-967644454-gwfly:/# exit
+```
+We can use a daemonset to run instances of Telegraf on every node in the cluster. Firstly, create a configmap containing the Telegraf configuration file:
 ```
 $ kubectl create configmap telegraf --from-file=config/telegraf.conf
 ```
