@@ -106,11 +106,11 @@ password:
 > exit
 root@influxdb-967644454-gwfly:/# exit
 ```
-We can use a daemonset to run instances of Telegraf on every node in the cluster. Firstly, create a configmap containing the Telegraf configuration file:
+We can use a daemonset to run instances of Telegraf on every node in the cluster. Firstly, create a configmap containing the Telegraf configuration file.
 ```
 $ kubectl create configmap telegraf --from-file=config/telegraf.conf
 ```
-then create the daemonset:
+This allows us to use a custom configuration file with the official Telegraf image. Then create the daemonset:
 ```
 kubectl create -f daemonsets/telegraf.yaml
 ```
